@@ -1,0 +1,7 @@
+{
+  "name": "MyChatApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
