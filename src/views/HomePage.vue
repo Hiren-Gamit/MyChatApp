@@ -18,15 +18,17 @@
       </ion-header>
       
       <ion-list>
+        <Messaging v-for="message in messages" :key="message.id"  :message="message" />
         <MessageListItem v-for="message in messages" :key="message.id" :message="message" />
       </ion-list>
     </ion-content>
   </ion-page>
 </template>
 
-<script lang="ts">
+<script>
 import { IonContent, IonHeader, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar } from '@ionic/vue';
 import MessageListItem from '@/components/MessageListItem.vue';
+import Messaging from '@/components/Messaging.vue';
 import { defineComponent } from 'vue';
 import { getMessages } from '@/data/messages';
 
@@ -38,7 +40,7 @@ export default defineComponent({
     }
   },
   methods: {
-    refresh: (ev: CustomEvent) => {
+    refresh: (ev) => {
       setTimeout(() => {
         ev.detail.complete();
       }, 3000);
@@ -53,7 +55,8 @@ export default defineComponent({
     IonRefresherContent,
     IonTitle,
     IonToolbar,
-    MessageListItem
+    MessageListItem,
+    Messaging
   },
 });
 </script>

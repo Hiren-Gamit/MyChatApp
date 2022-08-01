@@ -32,7 +32,7 @@
   </ion-page>
 </template>
 
-<script lang="ts">
+<script>
 import { useRoute } from 'vue-router';
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonNote, IonPage, IonToolbar } from '@ionic/vue';
 import { personCircle } from 'ionicons/icons';
@@ -45,7 +45,7 @@ export default defineComponent({
     return {
       personCircle,
       getBackButtonText: () => {
-        const win = window as any;
+        const win = window;
         const mode = win && win.Ionic && win.Ionic.mode;
         return mode === 'ios' ? 'Inbox' : '';
       }
@@ -53,7 +53,7 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute();
-    const message = getMessage(parseInt(route.params.id as string, 10));
+    const message = getMessage(parseInt(route.params.id, 10));
 
     return { message }
   },
