@@ -19,12 +19,7 @@ import {defineComponent} from 'vue';
 
 export default defineComponent ({
   name: 'Messaging',
-  components: {
-    IonIcon,
-    IonItem,
-    IonLabel,
-    IonNote,
-  },
+
   props: {
     message: Object,
   },
