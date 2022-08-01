@@ -1,6 +1,7 @@
 <template>
-  <ion-item>]
-    <ion-label>
+  <ion-item v-if="message" :routerLink="'/message/' + message.id" :detail="false" class="list-item">
+  <div slot="start" :class="!message.read ? 'dot dot-unread' : 'dot'"></div>
+    <ion-label class="ion-text-wrap">
         <h2>
         Hiren <!-- Hiren //{{ message.fromName }} -->
         <span class="date">
