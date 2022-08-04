@@ -5,7 +5,7 @@ import HomePage from '../views/HomePage.vue'
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/login'
   },
   {
     path: '/home',
@@ -13,9 +13,22 @@ const routes = [
     component: HomePage
   },
   {
+    path: '/login',
+    component: () => import('../views/LoginPage.vue')
+  },
+  {
+    path: '/register',
+    component: () => import('../views/RegisterPage.vue')
+  },
+  {
     path: '/message/:id',
     component: () => import('../views/ViewMessagePage.vue')
-  }
+  },
+  {
+    path: '/chat/:id',
+    component: () => import('../views/ViewChatPage.vue')
+  },
+  
 ]
 
 const router = createRouter({

@@ -1,11 +1,11 @@
 <template>
-  <ion-item v-if="message" :routerLink="'/message/' + message.id" :detail="false" class="list-item">
-  <div slot="start" :class="!message.read ? 'dot dot-unread' : 'dot'"></div>
+  <ion-item v-if="message" :routerLink="'/chat/' + message._id" :detail="false" class="list-item">
+  <div slot="end" :class="!message.read ? 'dot dot-unread' : 'dot'"></div>
     <ion-label class="ion-text-wrap">
         <h2>
-        Hiren <!-- Hiren //{{ message.fromName }} -->
+        {{message.name}}
         <span class="date">
-            <ion-note>{{ new Date() }}</ion-note>
+          <ion-note>some message...</ion-note>
           <!-- <ion-note>{{ message.date }}</ion-note> -->
           <ion-icon :icon="chevronForward" size="small" v-if="isIos()"></ion-icon>
         </span>
@@ -15,12 +15,18 @@
 </template>
 
 <script>
+import { IonIcon, IonItem, IonLabel, IonNote } from '@ionic/vue';
 import { chevronForward } from 'ionicons/icons';
 import {defineComponent} from 'vue';
 
 export default defineComponent ({
   name: 'Messaging',
-
+  components: {
+    IonIcon,
+    IonItem,
+    IonLabel,
+    IonNote,
+  },
   props: {
     message: Object,
   },
