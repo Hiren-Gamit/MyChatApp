@@ -38,7 +38,8 @@ export default defineComponent ({
         return{
             userEmail: '',
             userPassword: '',
-            url: 'http://localhost:5001/api' 
+            url: 'http://localhost:5000/api',
+            isLogged: false, 
         }
     },
     methods: {
@@ -57,6 +58,14 @@ export default defineComponent ({
                     this.$router.push('/home')
                 }
             })
+        }
+    },
+    mounted(){
+
+        const userId = localStorage.getItem('userId')
+        if (userId) {
+            this.isLogged = true
+            this.$router.push('/home')
         }
     }
 })

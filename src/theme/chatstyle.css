@@ -1,3 +1,10 @@
+.float-left {
+  float: left !important;
+}
+
+.float-right {
+  float: right !important;
+}
 
 .direct-chat .card-body {
     overflow-x: hidden;
@@ -49,7 +56,7 @@
     background: #d2d6de;
     border: 1px solid #d2d6de;
     color: #444;
-    margin: 5px 0 0 50px;
+    margin: 5px 50px 0 0;
     padding: 5px 10px;
     position: relative;
   }
@@ -78,8 +85,8 @@
   }
   
   .right .direct-chat-text {
-    margin-left: 0;
-    margin-right: 50px;
+    margin-left: 50px;
+    margin-right: 0;
   }
   
   .right .direct-chat-text::after,
@@ -207,8 +214,8 @@
     color: #ffffff;
   }
   
-  .direct-chat-primary .right > .direct-chat-text::after,
-  .direct-chat-primary .right > .direct-chat-text::before {
+  .direct-chat-primary .content-ltr .right > .direct-chat-text::after,
+  .direct-chat-primary .content-ltr .right > .direct-chat-text::before {
     border-left-color: #3d9970;
   }
   

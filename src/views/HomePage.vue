@@ -3,6 +3,7 @@
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-title>My Chat App</ion-title>
+          <ion-button slot="end" @click="logout" class="logout-button"> <ion-icon name="log-out-outline"></ion-icon></ion-button>
       </ion-toolbar>
     </ion-header>
     
@@ -13,7 +14,10 @@
       
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">My Chat App</ion-title>
+          <ion-title size="large">My Chat App eee</ion-title>
+          <ion-item>
+            <ion-button slot="end" @click="logout" class="logout-button"> <ion-icon name="log-out-outline"></ion-icon></ion-button>
+          </ion-item>
         </ion-toolbar>
       </ion-header>
       
@@ -49,7 +53,7 @@ export default defineComponent({
   data() {
     return {
       messages: '',
-      url: "http://localhost:5001/api",
+      url: "http://localhost:5000/api",
     }
   },
   methods: {
@@ -58,6 +62,10 @@ export default defineComponent({
         ev.detail.complete();
       }, 3000);
     },
+    logout(){
+      localStorage.clear();
+      this.$router.push('/login')
+    }
   },
   mounted(){
     const userId = localStorage.getItem('userId')
@@ -71,3 +79,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+
+.logout-button{
+  margin-right: 3px;
+  color: blue
+}
+</style>

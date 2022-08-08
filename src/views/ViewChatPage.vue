@@ -1,5 +1,5 @@
 <template>
-  <ion-page>
+  <ion-page class="direct-chat direct-chat-primary">
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-buttons slot="start">
@@ -14,37 +14,36 @@
         <ion-label class="ion-text-wrap">
           <h2>
             {{ receiverUser.name }}
-            <span class="date">
-              <ion-note>{{ message.date }}</ion-note>
-            </span>
           </h2>
-          <!-- <h3>To: <ion-note>Me</ion-note></h3> -->
         </ion-label>
       </ion-item>
-      
+      <div >
+        
+      </div>
       <div class="ion-padding" id="chatBox" ref="chatbox" style="height: 80%; overflow-y: scroll">
         <div v-for="msg in messages" :key="msg._id">
-          <div class="direct-chat-msg" :class="isSender(msg.sender_id) ? 'left' :  'right'">
+          <div class="direct-chat-msg" :class="isSender(msg.sender_id) ? 'right' :  'left'">
+            <div class="direct-chat-text">{{ msg.message}}</div>
             <div class="direct-chat-infos clearfix">
               <span
                 class="direct-chat-name text-muted"
-                :class="isSender(msg.sender_id) ? 'float-left' : 'float-right'"
+                :class="isSender(msg.sender_id) ? 'float-right' : 'float-left'"
               ></span>
               <span
                 class="direct-chat-timestamp"
-                :class="isSender(msg.sender_id) ? 'float-left' : 'float-right'"
+                :class="isSender(msg.sender_id) ? 'float-right' : 'float-left'"
               >{{ dateToRead(msg.createdAt) }}</span>
             </div>
           </div>
-          <div class="direct-chat-text">{{ msg.message}}</div>
         </div>  
       </div>
     </ion-content>
     <ion-footer>
       <ion-item>
-        <ion-input class="chat-input" v-model="message" placeholder="Type message here" @Keyup.enter="send"></ion-input>
-        <button item-right class="chat-input"  @click="send">send
-          <ion-icon slot="end" name="paper-plane-outline"></ion-icon>
+        <ion-input class="" v-model="message" placeholder="Type message here" @Keyup.enter="send"></ion-input>
+        <button item-right class="chat-send-button"  @click="send">
+        <ion-icon slot="end" name="send" class="chat-send-button"></ion-icon>
+          <!-- <ion-spinner name="bubbles"></ion-spinner> -->
         </button>
       </ion-item>
     </ion-footer>
@@ -53,9 +52,8 @@
 
 <script>
 import { useRoute } from 'vue-router';
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonNote, IonPage, IonToolbar,IonInput } from '@ionic/vue';
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonToolbar,IonInput } from '@ionic/vue';
 import { personCircle } from 'ionicons/icons';
-//import { getMessage } from '../data/mymessages';
 import { defineComponent } from 'vue';
 import axios from 'axios'
 import moment from 'moment'
@@ -71,7 +69,7 @@ export default defineComponent({
       receiverId: '',
       receiverUser: '',
       interval: null,
-      url: "http://localhost:5001/api",
+      url: "http://localhost:5000/api",
       getBackButtonText: () => {
         const win = window;
         const mode = win && win.Ionic && win.Ionic.mode;
@@ -93,7 +91,6 @@ export default defineComponent({
     IonIcon,
     IonItem,
     IonLabel,
-    IonNote,
     IonPage,
     IonToolbar,
     IonInput,
@@ -225,6 +222,7 @@ p {
     padding: 2px 0 0 0;
     margin: 10px;
     transition: all 0.15s ease-in-out;
+    margin-left: -50px;
 }
 input[type=text]:focus, textarea:focus {
   outline: none;
@@ -232,5 +230,12 @@ input[type=text]:focus, textarea:focus {
 textarea{
   overflow: hidden;
   
+}
+.chat-send-button{
+  margin-right: 3px;
+  color: blue
+}
+.ion-rotated-send{
+  transform: rotate(39deg);
 }
 </style>

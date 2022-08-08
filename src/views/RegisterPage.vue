@@ -1,30 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@Hiren-Gamit 
-bharathirajatut
-/
-ionic-vue
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-ionic-vue/data & event binding example/Home.vue
-@bharathirajatut
-bharathirajatut Create Home.vue
-Latest commit 31ed49b on Feb 9, 2021
- History
- 1 contributor
-Executable File  111 lines (93 sloc)  1.95 KB
 
 <template>
   <ion-page>
@@ -57,7 +30,7 @@ Executable File  111 lines (93 sloc)  1.95 KB
                 <ion-input  v-model="age"></ion-input>
             </ion-item>
             <section class="full-width ion-margin-top">
-                <ion-button expand="full" color="primary"  @click="login">Register</ion-button>
+                <ion-button expand="full" color="primary"  @click="register">Register</ion-button>
             </section>
         </ion-list>
         <p class="ion-text-center">Alredy have an account? <ion-label :routerLink="'/login'" class="register-link">Login here</ion-label></p>
@@ -69,6 +42,7 @@ Executable File  111 lines (93 sloc)  1.95 KB
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
 IonButton,IonItem,IonInput,IonLabel } from '@ionic/vue';
 import { defineComponent } from 'vue';
+import axios from 'axios'
 export default defineComponent({
   name: 'RegisterPage',
   components: {
@@ -88,12 +62,30 @@ export default defineComponent({
       userEmail:'',
       userPassword:'',
       age:'',
+            url: 'http://localhost:5000/api' 
     }
   },
   methods:{
-    add()
+    register()
     {
-      this.total=parseFloat(this.value1)+parseFloat(this.value2)
+      console.log("hello")
+      axios({
+                method: 'post',
+                url: this.url + '/users/registration',
+                data:{
+                    email: this.userEmail,
+                    password: this.userPassword,
+                    name: this.name,
+                    age: this.age,
+                }
+            })
+            .then(response =>  {
+              console.log(response)
+                if(response.data.statusCode == 200) {
+                    localStorage.setItem('userId',response.data.data._id)
+                    this.$router.push('/home')
+                }
+            })
     }
   }
 });

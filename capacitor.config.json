@@ -1,0 +1,7 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "MyChatApp",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
+
